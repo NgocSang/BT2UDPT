@@ -107,7 +107,73 @@ app.post('/', function(req, res){
       };
       });
     //Phan Outbox message
-    
+    app.get('/message', function(req, res) {
+      if(login == null){
+        res.redirect('/');
+      }else{
+      FR.listFriend(login.email,function(e,o){
+        res.render('message',{
+        data:o
+      })
+      });
+    }
+	});
+ app.post('/message', function(req, res){
+   if(login == null){
+     res.redirect('/');
+   }else{
+    ME.addNewMessage({
+      sender 	: login.email,
+      receiver 	: req.body.friend,
+      message	: req.body.content,
+      read: false
+    }, function(e){
+      if (e){
+        res.status(400).send(e);
+      }
+      else{
+        res.redirect('/message')
+      }
+    });
+  }
+  });
+  //In box
+  //Phan Outbox message
+
+app.get('/viewmessage/:id', function(req, res) {
+  var userID = req.params.id;
+  if(login == null){
+    res.redirect('/');
+  }else{
+  ME.Findmessage(userID,function(e,o){
+
+    if(o == null){
+      console.log('ko co bai');
+    }
+    else{
+    ME.updateMessage(userID,function(e,p){
+      if(p == null){
+        console.log("Lỗi ko cập nhât");
+      }
+      else{
+        ME.ReceiverlistMessage(login.email,function(e,p){
+          if(p == null)
+          {
+            console.log("Khong co tin nhan");
+          }
+          else {
+            res.render('viewmessage',{
+            data:p,
+            data1:o
+            })
+          };
+        });
+
+      };
+    });
+  };
+});
+
   };
 });
 
@@ -274,29 +340,5 @@ app.get('/unblock/:email', function(req, res) {
     });
 }
 });
-  app.get('/editaccount', function(req, res) {
-    if(login == null){
-      res.redirect('/');
-    }else{
-    res.render('editaccount', { data: login});
-  }
-  });
-
-  app.post('/editaccount', function(req, res){
-		if (login == null){
-			res.redirect('/');
-		}	else{
-			AM.updateAccount({
-				id		: login._id,
-				name	: req.body['name'],
-				pass	: req.body['pass']
-			}, function(e, o){
-				if (e){
-					res.status(400).send('error-updating-account');
-				}	else{
-					login = o;
-				}
-			});
-		}
-	});
+  a
 }
