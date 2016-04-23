@@ -104,4 +104,50 @@ app.post('/', function(req, res){
         });
       };
       });
+
+       app.get('/homemessage', function(req, res) {
+        var list = [];
+        if(login == null){
+          res.redirect('/');
+        }else{
+        ME.ReceiverlistMessage(login.email,function(e,o){
+          if(o == null){
+            console.log('ko co bai');
+          }
+          else{
+          FR.listFriend(login.email,function(e,p){
+            if(p != null)
+            {
+              console.log("So luong block");
+              console.log(p.block.length);
+              for(var i= 0 ; i < o.length ; i++)
+              {
+                console.log("Vo ham homemessage de kiem tra");
+                var KT = false;
+                for(var j = 0 ; j < p.block.length ; j++)
+                {
+                  if(o[i].sender == p.block[j])
+                  {
+                    KT = true;
+                  }
+                }
+                if(KT == false)
+                {
+                  list.push(o[i]);
+                }
+              }
+              res.render('homemessage',{
+              data:list})
+              }
+            else{
+              res.render('homemessage',{
+              data:o
+              })
+            };
+          });
+          };
+
+        });
+      };
+      });
     
