@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  div.navbar.navbar-fixed-top
+    div.navbar-inner
+      div.container
+        ul.nav.navbar-nav
+          li()
+            a(href="/outbox") Outbox
+          li()
+            a(href="/message") New message
+          li()
+            a(href="/homemessage") Inbox
+          li()
+            a(href="/friend") Friend
+          li()
+            a(href="/editaccount") Edit account
+        button(type="button",onclick="logout()",data-toggle="dropdown")#btn-logout.btn.btn-primary Sign Out
+  div#content_create
+    center
+      h2 Cập nhật tài khoản
+    div.container
+      div.row
+      form(name="form_login_create",method="post",action="/editaccount").form-group
+        div.form-group
+          label.control-label.col-xs-2 Email
+          div.col-xs-10
+            input(type="email" placeholder="Email" name="email" value ="#{data.email}" disabled="disabled").form-control
+        div.form-group
+          label.control-label.col-xs-2 Họ Tên
+          div.col-xs-10
+            input(type="text" placeholder="Họ và tên" name="name" value ="#{data.name}" required).form-control
+        div.form-group
+          label.control-label.col-xs-2 Mật khẩu
+          div.col-xs-10
+            input(type="password" placeholder="password" name="pass" value ="#{data.pass}" required).form-control
+        div.form-group
+          label.control-label.col-xs-2 Xác nhận mật khẩu
+          div.col-xs-10
+            input(type="password" placeholder="confirm password" name="confirm_pass" value ="#{data.pass}" onChange="checkpass(this.form)").form-control
+        button(type="submit" name="create" onClick='editaccount()').btn.btn-primary Cập nhật
