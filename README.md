@@ -27,7 +27,7 @@ Danh sách chức năng **phụ**:
 * [ ] Người dùng có thể đăng nhập với Facebook.
 * [X] Người dùng có thể block người khác. Sau khi block, người dùng sẽ không nhận được tin nhắn từ người bị block gửi nữa.
 * [X] Người dùng có thể xóa người dùng khác ra khỏi danh sách bạn.
-* [ X] Người dùng có thể unblock người dùng khác.
+* [X] Người dùng có thể unblock người dùng khác.
 * [ ] Khi người dùng kéo xuống cuối trang, các tin nhắn tiếp theo sẽ tự động hiển thị hoặc có nút nhấn "Xem thêm tin nhắn" để nạp thêm danh sách tin nhắn.
 * [ ] Người dùng sẽ nhận được email thông báo khi họ nhận được tin nhắn cùng với link để xem tin nhắn.
 * [ ] Người dùng sẽ nhận được email khi người nhận đã đọc tin nhắn.
@@ -44,7 +44,7 @@ Các chuẩn đầu ra cần thực hiện:
 
 Here's a walkthrough of implemented user stories:
 
-![Video Walkthrough](Demo.gif)
+![Video Walkthrough](demo.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
