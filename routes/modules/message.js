@@ -17,55 +17,58 @@ var db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}),
 		console.log('connected to database :: ' + dbName);
 	}
 });
+		var message = db.collection('message');
 
-var message = db.collection('message');
-
-exports.ReceiverlistMessage = function(email, callback)
-{
-	message.find({receiver:email}).sort({date: -1}).toArray(function(e, o) {
-		if (o){
-			callback(null,o);
-		}	else{
-			callback('not message');
-		}
-	});
-}
-
-exports.SenderlistMessage = function(email, callback)
-{
-	message.find({sender:email}).sort({date: -1}).toArray(function(e, o) {
-		if (o){
-			callback(null,o);
-		}	else{
-			callback('not message');
-		}
-	});
-}
-
-exports.Findmessage = function(id, callback)
-{
-	message.findOne({_id:ObjectID(id)}, function(e, o) {
-		if (o){
-			callback(null,o);
-		}	else{
-			callback('not message');
-		}
-	});
-}
-exports.updateMessage = function(id, callback)
-{
-	message.findOne({_id:ObjectID(id)}, function(e, o){
-		o.read = true;
-		o.readdate = moment().format('MMMM Do YYYY, h:mm:ss a');
-			message.save(o, {safe: true}, function(e) {
-				if (e) callback(e);
-				else callback(null, o);
+		exports.ReceiverlistMessage = function(email, callback)
+		{
+			message.find({receiver:email}).sort({date: -1}).toArray(function(e, o) {
+				if (o){
+					callback(null,o);
+				}	else{
+					callback('not message');
+				}
 			});
-	});
-}
-exports.addNewMessage = function(newData, callback)
-{
-		newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-		message.insert(newData, {safe: true}, callback);
+		}
 
-}
+		exports.SenderlistMessage = function(email, callback)
+		{
+			message.find({sender:email}).sort({date: -1}).toArray(function(e, o) {
+				if (o){
+					callback(null,o);
+				}	else{
+					callback('not message');
+				}
+			});
+		}
+
+		exports.Findmessage = function(id, callback)
+		{
+			message.findOne({_id:ObjectID(id)}, function(e, o) {
+				if (o){
+					callback(null,o);
+				}	else{
+					callback('not message');
+				}
+			});
+		}
+		exports.updateMessage = function(id, callback)
+		{
+			message.findOne({_id:ObjectID(id)}, function(e, o){
+				o.read = true;
+				o.readdate = moment().format('MMMM Do YYYY, h:mm:ss a');
+					message.save(o, {safe: true}, function(e) {
+						if (e) callback(e);
+						else callback(null, o);
+					});
+			});
+		}
+		exports.addNewMessage = function(newData, callback)
+		{
+				newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+				message.insert(newData, {safe: true}, callback);
+
+		}
+		exports.deleteMessage = function(callback)
+		{
+			message.remove({read:true}, callback);
+		}

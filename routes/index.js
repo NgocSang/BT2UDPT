@@ -11,11 +11,13 @@ app.get('/', function(req, res, next) {
   {
     res.render('login', { title: 'Login' });
   }else{
-    ME.listMessage(login.email,function(e,o){
+    console.log(login.email);
+    ME.ReceiverlistMessage(login.email,function(e,o){
       if(o == null){
         console.log('Error in login');
       }
       else{
+
       res.render('homemessage',{
       data:o
       }
@@ -59,6 +61,7 @@ app.post('/', function(req, res){
         if(login == null){
           res.redirect('/');
         }else{
+        
         ME.ReceiverlistMessage(login.email,function(e,o){
           if(o == null){
             console.log('Eror message');

@@ -18,3 +18,6 @@ function AddFriend(email){
 function editaccount(){
   window.location.href = '/editaccount';
 }
+function redirectTo(){
+  window.location.href = '/';
+}
