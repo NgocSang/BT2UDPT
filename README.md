@@ -33,13 +33,13 @@ Danh sách chức năng **phụ**:
 * [ ] Người dùng sẽ nhận được email khi người nhận đã đọc tin nhắn.
 * [ ] Người dùng có thể gửi tin nhắn cho người dùng ngoài hệ thống. Khi đó, người nhận sẽ nhận được 1 email chứa link đăng ký tài khoản. Sau khi đăng ký tài khoản, họ có thể xem tin nhắn đã nhận.
 
-Danh sách chức năng **phụ** đã làm nhưng không được liệt kê ở trên:* [X] Logout người dung.* [X] Cập nhật thông tin và cập nhật password.
+Danh sách chức năng **phụ** đã làm nhưng không được liệt kê ở trên:[X] Logout người dung.[X] Cập nhật thông tin và cập nhật password.
 
 Các chuẩn đầu ra cần thực hiện:
 * [ ] Git với Centralize Workflow
-* [X] Git theo Feature Branch Workflow
+* [] Git theo Feature Branch Workflow
 * [ ] Git theo Feature Branch Workflow có Pull Request
-* [ ] Git theo Gitflow Workflow
+* [X] Git theo Gitflow Workflow
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
